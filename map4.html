@@ -119,6 +119,9 @@
             // Array to store drawn points
             const drawnPoints = [];
 
+            // Set the sketch widget to continuous creation mode
+            sketch.creationMode = "continuous";
+            
             // Store points when the user finishes drawing them
             sketch.on("create", function (event) {
                 if (event.state === "complete") {
