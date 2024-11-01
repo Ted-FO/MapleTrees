@@ -120,40 +120,17 @@ const view = new MapView({
             // Array to store drawn points
 const drawnPoints = [];
 
-// Custom button to start continuous point drawing
-const continuousDrawButton = document.createElement("button");
-continuousDrawButton.id = "startContinuousDraw";
-continuousDrawButton.textContent = "Start Drawing Points Continuously";
-buttonContainer.appendChild(continuousDrawButton);
+// Set the Sketch widget to continuous creation mode
+sketch.creationMode = "continuous";
 
-// Add the new button to the UI below the Sketch widget
-view.ui.add(buttonContainer, { position: "top-right" });
+// Store points when the user finishes drawing them
+sketch.on("create", function (event) {
+    if (event.state === "complete") {
+        drawnPoints.push(event.graphic.geometry);
+    }
+});
 
-// Function to start continuous drawing mode
-function startContinuousDrawing() {
-    sketch.create("point");
-    sketch.on("create", function (event) {
-        if (event.state === "complete") {
-            drawnPoints.push(event.graphic.geometry);
 
-            // Immediately restart point drawing
-            sketch.create("point");
-        }
-    });
-}
-
-// Activate continuous drawing mode when the button is clicked
-continuousDrawButton.onclick = function () {
-    startContinuousDrawing();
-};
-
-            
-            // Store points when the user finishes drawing them
-            sketch.on("create", function (event) {
-                if (event.state === "complete") {
-                    drawnPoints.push(event.graphic.geometry);
-                }
-            });
 
             // Submit button logic to send points to the feature layer
             submitButton.onclick = function () {
