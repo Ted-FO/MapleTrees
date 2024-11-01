@@ -48,13 +48,14 @@
             // Create the map with hybrid imagery basemap
             const map = new Map({ basemap: "hybrid" });
 
-            // Create the MapView
-            const view = new MapView({
-                container: "viewDiv",
-                map: map,
-                center: [-100.33, 43.69], // Initial map center
-                zoom: 4
-            });
+            // Create the MapView focused on Ontario
+const view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [-85.0, 50.0], // Center on Ontario
+    zoom: 5 // Adjust zoom level to fit most of Ontario
+});
+
 
             // Add GraphicsLayer to store the points
             const graphicsLayer = new GraphicsLayer();
