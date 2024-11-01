@@ -75,7 +75,11 @@ const view = new MapView({
                 view: view,
                 creationMode: "update",
                 visibleElements: {
-                    createTools: { point: true }, // Enable only the point tool
+                    createTools: {point: true, // Enable only the point tool
+                        polyline: false, // Disable polyline tool
+                        polygon: false, // Disable polygon tool
+                        rectangle: false, // Disable rectangle tool
+                        circle: false // Disable circle too }, // Enable only the point tool
                     selectionTools: { "lasso-selection": false, "rectangle-selection": false,"circle-selection": false, "polygon-selection": false }
                 },
                 pointSymbol: pointSymbol // Set the custom red circle symbol
